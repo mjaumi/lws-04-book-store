@@ -7,7 +7,7 @@ import BookCard from '../BookCard/BookCard';
 const BookList = () => {
     // integration of react-redux hooks here
     const dispatch = useDispatch();
-    const bookList = useSelector(state => state?.books);
+    const bookList = useSelector(state => state.books.bookList);
     const filters = useSelector(state => state.filters);
 
     // fetching all the books from server here
