@@ -2,6 +2,8 @@ import BookForm from './components/BookForm/BookForm';
 import BookList from './components/BookList/BookList';
 import Navbar from './components/Navbar/Navbar';
 import './style.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           </div>
         </div>
       </main>
+      <ToastContainer position='top-center' theme='colored' />
     </>
   );
 }

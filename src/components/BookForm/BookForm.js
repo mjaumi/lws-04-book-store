@@ -1,12 +1,36 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import addBook from '../../redux/books/thunk/addBook';
 
 const BookForm = () => {
+    // integration of react-redux hooks here
+    const dispatch = useDispatch();
+
+    // handler function to handle new book adding feature
+    const addNewBookHandler = e => {
+        e.preventDefault();
+
+        const newBook = {
+            name: e.target.name.value,
+            author: e.target.author.value,
+            thumbnail: e.target.thumbnail.value,
+            price: parseInt(e.target.price.value),
+            rating: parseInt(e.target.rating.value),
+            featured: e.target.featured.checked,
+        }
+
+        dispatch(addBook(newBook));
+
+        e.target.reset();
+
+        console.log(newBook);
+    }
 
     // rendering book form component here
     return (
         <div className='p-4 overflow-hidden bg-white shadow-cardShadow rounded-md'>
             <h4 className='mb-8 text-xl font-bold text-center'>Add New Book</h4>
-            <form className='book-form'>
+            <form onSubmit={addNewBookHandler} className='book-form'>
                 <div className='space-y-2'>
                     <label htmlFor='name'>Book Name</label>
                     <input required className='text-input' type='text' id='input-Bookname' name='name' />
