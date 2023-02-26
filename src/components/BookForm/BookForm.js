@@ -33,6 +33,7 @@ const BookForm = () => {
         }
 
         dispatch(getBookDetails(0));
+        e.target.featured.defaultChecked = false;
         e.target.reset();
     }
 
