@@ -35,15 +35,6 @@
       "rating": "4",
       "featured": true,
       "id": 5
-    },
-    {
-      "name": "VIP SERVICE",
-      "author": "Mj Aumi",
-      "thumbnail": "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-      "price": "400",
-      "rating": 4,
-      "featured": false,
-      "id": 6
     }
   ]
 }
