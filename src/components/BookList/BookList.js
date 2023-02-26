@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import fetchBooks from '../../redux/books/thunk/fetchBooks';
 import BookCard from '../BookCard/BookCard';
 
 const BookList = () => {
+    // integration of react-redux hooks here
+    const dispatch = useDispatch();
+    const bookList = useSelector(state => state?.books);
+
+    // fetching all the books from server here
+    useEffect(() => {
+        dispatch(fetchBooks);
+    }, [dispatch]);
 
     // rendering book list component here
     return (
@@ -15,7 +25,12 @@ const BookList = () => {
                 </div>
             </div>
             <div className='lws-bookContainer'>
-                <BookCard />
+                {
+                    bookList?.map(book => <BookCard
+                        key={book.id}
+                        book={book}
+                    />)
+                }
             </div>
         </div>
     );
