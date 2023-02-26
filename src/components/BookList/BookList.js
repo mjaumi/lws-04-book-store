@@ -8,7 +8,7 @@ const BookList = () => {
     // integration of react-redux hooks here
     const dispatch = useDispatch();
     const bookList = useSelector(state => state?.books);
-    const filter = useSelector(state => state.filters);
+    const filters = useSelector(state => state.filters);
 
     // fetching all the books from server here
     useEffect(() => {
@@ -22,13 +22,18 @@ const BookList = () => {
 
     // this function is filtering the books based on featured
     const filterByFeatured = (book) => {
-        switch (filter.status) {
+        switch (filters.status) {
             case 'Featured':
                 return book.featured;
 
             default:
                 return book;
         }
+    }
+
+    // this function is filtering the books based on search text
+    const filterByName = (book) => {
+        return book.name.toLowerCase().includes(filters.filterText.toLowerCase());
     }
 
     // rendering book list component here
@@ -38,14 +43,15 @@ const BookList = () => {
                 <h4 className='mt-2 text-xl font-bold'>Book List</h4>
 
                 <div className='flex items-center space-x-4'>
-                    <button onClick={() => statusChangeHandler('All')} className={`filter-btn ${filter.status === 'All' && 'active-filter'}`} id='lws-filterAll'>All</button>
-                    <button onClick={() => statusChangeHandler('Featured')} className={`filter-btn ${filter.status === 'Featured' && 'active-filter'}`} id='lws-filterFeatured'>Featured</button>
+                    <button onClick={() => statusChangeHandler('All')} className={`filter-btn ${filters.status === 'All' && 'active-filter'}`} id='lws-filterAll'>All</button>
+                    <button onClick={() => statusChangeHandler('Featured')} className={`filter-btn ${filters.status === 'Featured' && 'active-filter'}`} id='lws-filterFeatured'>Featured</button>
                 </div>
             </div>
             <div className='lws-bookContainer'>
                 {
                     bookList
                         .filter(filterByFeatured)
+                        .filter(filterByName)
                         .map(book => <BookCard
                             key={book.id}
                             book={book}
