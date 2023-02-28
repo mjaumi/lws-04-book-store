@@ -1,4 +1,4 @@
-import { BOOKS_LOADED, BOOK_ADDED, BOOK_DELETED, BOOK_UPDATED, CLEAR_BOOK_DETAILS, GET_BOOK_DETAILS } from './actionTypes';
+import { BOOKS_LOADED, BOOK_ADDED, BOOK_DELETED, BOOK_UPDATED, GET_BOOK_DETAILS } from './actionTypes';
 import initialState from './initialState';
 
 // reducer function for books slice is declared here
@@ -42,15 +42,11 @@ const booksReducer = (state = initialState, action) => {
             };
 
         case GET_BOOK_DETAILS:
+            const bookDetails = state.bookList.find(book => book.id === action.payload);
+            console.log(bookDetails, action.payload);
             return {
                 ...state,
-                editBook: state.bookList.find(book => book.id === action.payload),
-            };
-
-        case CLEAR_BOOK_DETAILS:
-            return {
-                ...state,
-                editBook: {},
+                editBook: bookDetails ? bookDetails : {},
             };
 
         default:

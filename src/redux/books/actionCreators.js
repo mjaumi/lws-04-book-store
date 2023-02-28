@@ -1,6 +1,6 @@
 // declaration of all actions for books slice here
 
-import { BOOKS_LOADED, BOOK_ADDED, BOOK_DELETED, BOOK_UPDATED, CLEAR_BOOK_DETAILS, GET_BOOK_DETAILS } from './actionTypes';
+import { BOOKS_LOADED, BOOK_ADDED, BOOK_DELETED, BOOK_UPDATED, GET_BOOK_DETAILS } from './actionTypes';
 
 export const booksLoaded = (bookList) => {
     return {
@@ -37,11 +37,5 @@ export const getBookDetails = (bookId) => {
     return {
         type: GET_BOOK_DETAILS,
         payload: bookId,
-    };
-}
-
-export const clearBookDetails = () => {
-    return {
-        type: CLEAR_BOOK_DETAILS,
     };
 }
