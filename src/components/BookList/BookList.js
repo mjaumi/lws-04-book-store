@@ -47,17 +47,28 @@ const BookList = () => {
                     <button onClick={() => statusChangeHandler('Featured')} className={`filter-btn ${filters.status === 'Featured' && 'active-filter'}`} id='lws-filterFeatured'>Featured</button>
                 </div>
             </div>
-            <div className='lws-bookContainer'>
-                {
-                    bookList
-                        .filter(filterByFeatured)
-                        .filter(filterByName)
-                        .map(book => <BookCard
-                            key={book.id}
-                            book={book}
-                        />)
-                }
-            </div>
+            {
+                (bookList.length && bookList.filter(filterByName).length) ?
+                    (filters.status === 'All' || (filters.status === 'Featured' &&
+                        bookList.filter(filterByFeatured).length)) ?
+                        <div className='lws-bookContainer'>
+                            {
+                                bookList
+                                    .filter(filterByFeatured)
+                                    .filter(filterByName)
+                                    .map(book =>
+                                        < BookCard
+                                            key={book.id}
+                                            book={book}
+                                        />
+                                    )
+                            }
+                        </div>
+                        :
+                        <h3 className='text-xl font-bold text-center'>No Featured Book Found!</h3>
+                    :
+                    <h3 className='text-xl font-bold text-center'>No Books Found!</h3>
+            }
         </div>
     );
 };
