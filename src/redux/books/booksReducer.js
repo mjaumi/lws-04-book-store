@@ -43,7 +43,6 @@ const booksReducer = (state = initialState, action) => {
 
         case GET_BOOK_DETAILS:
             const bookDetails = state.bookList.find(book => book.id === action.payload);
-            console.log(bookDetails, action.payload);
             return {
                 ...state,
                 editBook: bookDetails ? bookDetails : {},
