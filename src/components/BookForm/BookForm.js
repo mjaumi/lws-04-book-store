@@ -70,7 +70,7 @@ const BookForm = () => {
             case 'price':
                 return setBookFromData({
                     ...bookFormData,
-                    price: parseInt(e.target.value),
+                    price: parseFloat(e.target.value),
                 });
 
             case 'rating':
@@ -113,7 +113,7 @@ const BookForm = () => {
                 <div className='grid grid-cols-2 gap-8 pb-4'>
                     <div className='space-y-2'>
                         <label htmlFor='price'>Price</label>
-                        <input required className='text-input' type='number' id='input-Bookprice' name='price' value={bookFormData.price} onChange={formInputChangeHandler} />
+                        <input required className='text-input' type='number' id='input-Bookprice' name='price' step='any' value={bookFormData.price} onChange={formInputChangeHandler} />
                     </div>
 
                     <div className='space-y-2'>
